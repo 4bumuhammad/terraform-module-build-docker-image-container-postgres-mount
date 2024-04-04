@@ -57,7 +57,7 @@
     <h2>Link to view entire :</h2>
     <ul>
         <li>
-            <h2><a href="./TF-Module-Docker-postgresql">&#x1F6A9; Terraform Modules TF-Docker-postgresql = docker postgres:16.2</a></h2>
+            <h2><a href="./TF-Module-docker-multi-image">&#x1F6A9; Terraform Modules TF-Module-docker-multi-image</a></h2>
         </li>
     </ul>
 </div>
