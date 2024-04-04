@@ -189,6 +189,47 @@ Reference :<br />
 <pre>
     ❯ terraform -chdir=./TF-Module-docker-multi-image destroy
 
+
+          module.stage2_docker_nginx.docker_image.nginx: Refreshing state... [id=sha256:b8c82647e8a2586145e422943ae4c69c9b1600db636e1269efd256360eb396b0nginx:alpine3.18]
+          module.stage1_docker_postgresql.docker_image.postgres: Refreshing state... [id=sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00cpostgres:16.2]
+
+          Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+            - destroy
+
+          Terraform will perform the following actions:
+
+            # module.stage1_docker_postgresql.docker_image.postgres will be destroyed
+            - resource "docker_image" "postgres" {
+                - id           = "sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00cpostgres:16.2" -> null
+                - image_id     = "sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00c" -> null
+                - keep_locally = false -> null
+                - name         = "postgres:16.2" -> null
+                - repo_digest  = "postgres@sha256:6b841c8f6a819884207402f1209a8116844365df15fca8cf556fc54a24c70800" -> null
+              }
+
+            # module.stage2_docker_nginx.docker_image.nginx will be destroyed
+            - resource "docker_image" "nginx" {
+                - id           = "sha256:b8c82647e8a2586145e422943ae4c69c9b1600db636e1269efd256360eb396b0nginx:alpine3.18" -> null
+                - image_id     = "sha256:b8c82647e8a2586145e422943ae4c69c9b1600db636e1269efd256360eb396b0" -> null
+                - keep_locally = false -> null
+                - name         = "nginx:alpine3.18" -> null
+                - repo_digest  = "nginx@sha256:31bad00311cb5eeb8a6648beadcf67277a175da89989f14727420a80e2e76742" -> null
+              }
+
+          Plan: 0 to add, 0 to change, 2 to destroy.
+
+          Do you really want to destroy all resources?
+            Terraform will destroy all your managed infrastructure, as shown above.
+            There is no undo. Only 'yes' will be accepted to confirm.
+
+            Enter a value: yes
+
+          module.stage1_docker_postgresql.docker_image.postgres: Destroying... [id=sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00cpostgres:16.2]
+          module.stage2_docker_nginx.docker_image.nginx: Destroying... [id=sha256:b8c82647e8a2586145e422943ae4c69c9b1600db636e1269efd256360eb396b0nginx:alpine3.18]
+          module.stage1_docker_postgresql.docker_image.postgres: Destruction complete after 1s
+          module.stage2_docker_nginx.docker_image.nginx: Destruction complete after 1s
+
+          Destroy complete! Resources: 2 destroyed.
 </pre>
 
 &nbsp;
