@@ -93,7 +93,8 @@ Reference :<br />
 
 
     ❯ docker container list
-
+    
+</pre>
 
 &nbsp;
 
