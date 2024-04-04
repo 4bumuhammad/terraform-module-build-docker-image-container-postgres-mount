@@ -110,6 +110,47 @@ Reference :<br />
     ❯ terraform -chdir=./TF-Module-docker-multi-image apply -auto-approve
 
 
+
+          Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+            + create
+
+          Terraform will perform the following actions:
+
+            # module.stage1_docker_postgresql.docker_image.postgres will be created
+            + resource "docker_image" "postgres" {
+                + id           = (known after apply)
+                + image_id     = (known after apply)
+                + keep_locally = false
+                + name         = "postgres:16.2"
+                + repo_digest  = (known after apply)
+              }
+
+            # module.stage2_docker_nginx.docker_image.nginx will be created
+            + resource "docker_image" "nginx" {
+                + id           = (known after apply)
+                + image_id     = (known after apply)
+                + keep_locally = false
+                + name         = "nginx:alpine3.18"
+                + repo_digest  = (known after apply)
+              }
+
+          Plan: 2 to add, 0 to change, 0 to destroy.
+          module.stage1_docker_postgresql.docker_image.postgres: Creating...
+          module.stage2_docker_nginx.docker_image.nginx: Creating...
+          module.stage1_docker_postgresql.docker_image.postgres: Still creating... [10s elapsed]
+          module.stage2_docker_nginx.docker_image.nginx: Still creating... [10s elapsed]
+          module.stage2_docker_nginx.docker_image.nginx: Still creating... [20s elapsed]
+          module.stage1_docker_postgresql.docker_image.postgres: Still creating... [20s elapsed]
+          module.stage1_docker_postgresql.docker_image.postgres: Still creating... [30s elapsed]
+          module.stage2_docker_nginx.docker_image.nginx: Still creating... [30s elapsed]
+          module.stage2_docker_nginx.docker_image.nginx: Still creating... [40s elapsed]
+          module.stage1_docker_postgresql.docker_image.postgres: Still creating... [40s elapsed]
+          module.stage2_docker_nginx.docker_image.nginx: Creation complete after 41s [id=sha256:b8c82647e8a2586145e422943ae4c69c9b1600db636e1269efd256360eb396b0nginx:alpine3.18]
+          module.stage1_docker_postgresql.docker_image.postgres: Still creating... [50s elapsed]
+          module.stage1_docker_postgresql.docker_image.postgres: Still creating... [1m0s elapsed]
+          module.stage1_docker_postgresql.docker_image.postgres: Creation complete after 1m5s [id=sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00cpostgres:16.2]
+
+          Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
 </pre>
 
 &nbsp;
@@ -133,6 +174,10 @@ Reference :<br />
 
 <pre>
     ❯ docker images
+
+        REPOSITORY   TAG          IMAGE ID       CREATED       SIZE
+        postgres     16.2         eae233f106f6   6 weeks ago   453MB
+        nginx        alpine3.18   b8c82647e8a2   7 weeks ago   43.6MB
 
 
     ❯ docker container list
