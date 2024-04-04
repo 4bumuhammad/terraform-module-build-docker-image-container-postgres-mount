@@ -8,16 +8,6 @@ Reference :<br />
 
 &nbsp;
 
-
-## &#x1F6A9; Terraform TF-Module-Docker-postgresql = docker postgresql:16.2
-
-<div align="center">
-    <img src="../gambar-petunjuk/ss_docker_registry_postgres.png" alt="ss_docker_registry_postgres" style="display: block; margin: 0 auto;">
-    <p align="center">https://hub.docker.com/layers/library/postgres/16.2/images/sha256-fe5bab5720ec73a61209666d67c6ce5a20861a0a8f58115dd594c85a900e958a?context=explore</p>
-</div>
-
-&nbsp;
-
 &nbsp;
 
 ### &#127937; Start terraform infastructure exercise as code.
@@ -25,15 +15,20 @@ Reference :<br />
 &nbsp;
 
 <pre>
-    ❯ tree -L 2 -a -I 'README.md|.DS_Store|.terraform|*.hcl|*.tfstate|*.tfstate.backup' ./TF-Module-Docker-postgresql
-        ├── main.tf
-        ├── outputs.tf
-        ├── provider.tf
-        ├── secret
-        │   └── terraform_postgres.tfvars
-        └── variables.tf
-        
-        1 directory, 5 files
+  ❯ tree -L 4 -a -I 'README.md|.DS_Store|.terraform|*.hcl|*.tfstate|*.tfstate.backup' ./TF-Module-docker-multi-image
+      ├── main.tf
+      ├── modules
+      │   ├── stage1-docker-postgresql
+      │   │   ├── docker_images.tf
+      │   │   ├── outputs.tf
+      │   │   └── variables.tf
+      │   └── stage2-docker-nginx
+      │       ├── docker_images.tf
+      │       ├── outputs.tf
+      │       └── variables.tf
+      └── variables.tf
+
+      3 directories, 8 files
 </pre>
 
 &nbsp;
