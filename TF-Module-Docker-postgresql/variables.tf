@@ -10,7 +10,7 @@ data "external" "get_home_path" {
 
 variable "datatest_directory" {
   description = "Path to the datatest directory"
-  default     =  "/Documents/test/docker-mount/postgres-test/"
+  default     = "/Documents/test/docker-mount/postgres-test/"
 }
 
 locals {
