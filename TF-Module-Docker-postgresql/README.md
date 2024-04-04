@@ -20,7 +20,7 @@ Reference :<br />
 &nbsp;
 
 
-## &#x1F6A9; Terraform TF-Docker-postgresql = docker postgresql:16.2
+## &#x1F6A9; Terraform TF-Module-Docker-postgresql = docker postgresql:16.2
 
 <div align="center">
     <img src="../gambar-petunjuk/ss_docker_registry_postgres.png" alt="ss_docker_registry_postgres" style="display: block; margin: 0 auto;">
@@ -34,7 +34,7 @@ Reference :<br />
 ### &#127937; Start terraform infastructure exercise as code.
 
 <pre>
-    ❯ vim TF-Docker-postgresql/provider.tf
+    ❯ vim TF-Module-Docker-postgresql/provider.tf
 </pre>
 <pre>
         terraform {
@@ -57,7 +57,7 @@ Reference :<br />
 &nbsp;
 
 <pre>
-    ❯ vim TF-Docker-postgresql/main.tf
+    ❯ vim TF-Module-Docker-postgresql/main.tf
 </pre>
 <pre>
             resource "docker_image" "postgres" {
@@ -111,7 +111,7 @@ Reference :<br />
 &nbsp;
 
 <pre>
-    ❯ vim TF-Docker-postgresql/variables.tf
+    ❯ vim TF-Module-Docker-postgresql/variables.tf
 </pre>
 <pre>
         variable "postgres_password" {
@@ -130,9 +130,9 @@ Reference :<br />
 &nbsp;
 
 <pre>
-    ❯ mkdir TF-Docker-postgresql/secret
+    ❯ mkdir TF-Module-Docker-postgresql/secret
 
-    ❯ vim TF-Docker-postgresql/secret/terraform_postgres.tfvars
+    ❯ vim TF-Module-Docker-postgresql/secret/terraform_postgres.tfvars
 
             postgres_password = "password123"
 </pre>
@@ -140,7 +140,7 @@ Reference :<br />
 &nbsp;
 
 <pre>
-    ❯ vim TF-Docker-postgresql/outputs.tf
+    ❯ vim TF-Module-Docker-postgresql/outputs.tf
 </pre>
 <pre>
         output "docker_container_name" {
@@ -151,7 +151,7 @@ Reference :<br />
 &nbsp;
 
 <pre>
-    ❯ tree -L 2 -a -I 'README.md|.DS_Store|.terraform|*.hcl|*.tfstate|*.tfstate.backup' ./TF-Docker-postgresql
+    ❯ tree -L 2 -a -I 'README.md|.DS_Store|.terraform|*.hcl|*.tfstate|*.tfstate.backup' ./TF-Module-Docker-postgresql
         ├── main.tf
         ├── outputs.tf
         ├── provider.tf
@@ -167,7 +167,7 @@ Reference :<br />
 ### &#x1F530; TERRAFORM STAGES :
 
 <pre>
-    ❯ terraform -chdir=./TF-Docker-postgresql init
+    ❯ terraform -chdir=./TF-Module-Docker-postgresql init
 
 
             Initializing the backend...
@@ -213,7 +213,7 @@ Reference :<br />
 &nbsp;
 
 <pre>
-    ❯ terraform -chdir=./TF-Docker-postgresql plan -var-file=./secret/terraform_postgres.tfvars
+    ❯ terraform -chdir=./TF-Module-Docker-postgresql plan -var-file=./secret/terraform_postgres.tfvars
 
 
             Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
@@ -300,7 +300,7 @@ Reference :<br />
 &nbsp;
 
 <pre>
-    ❯ terraform -chdir=./TF-Docker-postgresql apply -var-file=./secret/terraform_postgres.tfvars
+    ❯ terraform -chdir=./TF-Module-Docker-postgresql apply -var-file=./secret/terraform_postgres.tfvars
 
 
             Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
@@ -412,14 +412,14 @@ Reference :<br />
 
 If you want to run stage apply with auto approve on the confirmation.
 <pre>
-    ❯ terraform -chdir=./TF-Docker-postgresql apply -var-file=./secret/terraform_postgres.tfvars -auto-approve
+    ❯ terraform -chdir=./TF-Module-Docker-postgresql apply -var-file=./secret/terraform_postgres.tfvars -auto-approve
 </pre>
 
 &nbsp;
 
 &#x1F534; If you want to display the `trace log`, you can use the following command in the apply stage of this terraform &#x1F3C3;.
 <pre>
-    ❯ TF_LOG_CORE=trace terraform -chdir=./TF-Docker-postgresql apply -var-file=./secret/terraform_postgres.tfvars
+    ❯ TF_LOG_CORE=trace terraform -chdir=./TF-Module-Docker-postgresql apply -var-file=./secret/terraform_postgres.tfvars
 </pre>
 
 ---
@@ -474,7 +474,7 @@ Implement a postgresql connection using DBEAVER to the Terraform-postgres contai
 &nbsp;
 
 <pre>
-    ❯ terraform -chdir=./TF-Docker-postgresql destroy -var-file=./secret/terraform_postgres.tfvars
+    ❯ terraform -chdir=./TF-Module-Docker-postgresql destroy -var-file=./secret/terraform_postgres.tfvars
 
 
             null_resource.manage_directory: Refreshing state... [id=6943011660953020159]
