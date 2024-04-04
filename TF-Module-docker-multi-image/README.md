@@ -38,6 +38,7 @@ Reference :<br />
 <pre>
     ❯ terraform -chdir=./TF-Module-docker-multi-image init
 
+
           Initializing the backend...
           Initializing modules...
 
@@ -73,7 +74,34 @@ Reference :<br />
     ❯ terraform -chdir=./TF-Module-docker-multi-image plan
 
 
+          Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+            + create
 
+          Terraform will perform the following actions:
+
+            # module.stage1_docker_postgresql.docker_image.postgres will be created
+            + resource "docker_image" "postgres" {
+                + id           = (known after apply)
+                + image_id     = (known after apply)
+                + keep_locally = false
+                + name         = "postgres:16.2"
+                + repo_digest  = (known after apply)
+              }
+
+            # module.stage2_docker_nginx.docker_image.nginx will be created
+            + resource "docker_image" "nginx" {
+                + id           = (known after apply)
+                + image_id     = (known after apply)
+                + keep_locally = false
+                + name         = "nginx:alpine3.18"
+                + repo_digest  = (known after apply)
+              }
+
+          Plan: 2 to add, 0 to change, 0 to destroy.
+
+          ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+          Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these actions if you run "terraform apply" now.
 </pre>
 
 &nbsp;
