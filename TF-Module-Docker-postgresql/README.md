@@ -203,9 +203,9 @@ Reference :<br />
 &nbsp;
 
 <pre>
-    ❯ terraform -chdir=./TF-Docker-nginx fmt
+    ❯ terraform -chdir=./TF-Module-Docker-postgresql fmt
 
-    ❯ terraform -chdir=./TF-Docker-nginx validate
+    ❯ terraform -chdir=./TF-Module-Docker-postgresql validate
 
             Success! The configuration is valid.
 </pre>
