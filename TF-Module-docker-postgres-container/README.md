@@ -181,7 +181,43 @@ Continue the stage :
     ❯ terraform -chdir=./TF-Module-docker-postgres-container apply -auto-approve
 
 
+            module.stage2_manage_directory.data.external.get_home_path: Reading...
+            module.stage2_manage_directory.data.external.get_home_path: Read complete after 0s [id=-]
 
+            Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+            + create
+
+            Terraform will perform the following actions:
+
+            # module.stage1_docker_postgresql.docker_image.postgres will be created
+            + resource "docker_image" "postgres" {
+                + id           = (known after apply)
+                + image_id     = (known after apply)
+                + keep_locally = false
+                + name         = "postgres:16.2"
+                + repo_digest  = (known after apply)
+                }
+
+            # module.stage2_manage_directory.null_resource.manage_directory will be created
+            + resource "null_resource" "manage_directory" {
+                + id       = (known after apply)
+                + triggers = {
+                    + "always_run" = (known after apply)
+                    }
+                }
+
+            Plan: 2 to add, 0 to change, 0 to destroy.
+            module.stage2_manage_directory.null_resource.manage_directory: Creating...
+            module.stage2_manage_directory.null_resource.manage_directory: Creation complete after 0s [id=763768975835620873]
+            module.stage1_docker_postgresql.docker_image.postgres: Creating...
+            module.stage1_docker_postgresql.docker_image.postgres: Still creating... [10s elapsed]
+            module.stage1_docker_postgresql.docker_image.postgres: Still creating... [20s elapsed]
+            module.stage1_docker_postgresql.docker_image.postgres: Still creating... [30s elapsed]
+            module.stage1_docker_postgresql.docker_image.postgres: Still creating... [40s elapsed]
+            module.stage1_docker_postgresql.docker_image.postgres: Still creating... [50s elapsed]
+            module.stage1_docker_postgresql.docker_image.postgres: Creation complete after 1m0s [id=sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00cpostgres:16.2]
+
+            Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
 </pre>
 
 &nbsp;
@@ -206,9 +242,13 @@ Continue the stage :
 <pre>
     ❯ docker images
 
+        REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+        postgres     16.2      eae233f106f6   6 weeks ago   453MB
+
 
     ❯ docker container list
 
+        CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 </pre>
 
 &nbsp;
