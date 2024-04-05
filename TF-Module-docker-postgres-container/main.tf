@@ -4,5 +4,5 @@ module "stage1_docker_postgresql" {
 }
 
 module "stage2_manage_directory" {
-  source      = "./modules/stage2-manage-directory"
+  source = "./modules/stage2-manage-directory"
 }

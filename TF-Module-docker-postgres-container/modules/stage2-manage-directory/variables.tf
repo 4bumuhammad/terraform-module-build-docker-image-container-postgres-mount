@@ -1,10 +1,10 @@
 data "external" "get_home_path" {
-  program = ["sh", "${path.module}/modules/stage2-manage-directory/get_home.sh"]
+  program = ["sh", "${path.module}/get_home.sh"]
 }
 
 variable "datatest_directory" {
   description = "Path to the datatest directory"
-  default     =  "/Documents/test/docker-mount/postgres-test/"
+  default     = "/Documents/test/docker-mount/postgres-test/"
 }
 
 locals {
