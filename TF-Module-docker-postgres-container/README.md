@@ -97,23 +97,33 @@ Continue the stage :
     ❯ terraform -chdir=./TF-Module-docker-postgres-container init
 
 
-          Initializing the backend...
-          Initializing modules...
+            Initializing the backend...
+            Initializing modules...
+            - stage2_manage_directory in modules/stage2-manage-directory
 
-          Initializing provider plugins...
-          - Reusing previous version of kreuzwerker/docker from the dependency lock file
-          - Using previously-installed kreuzwerker/docker v3.0.2
+            Initializing provider plugins...
+            - Finding latest version of hashicorp/external...
+            - Reusing previous version of kreuzwerker/docker from the dependency lock file
+            - Finding latest version of hashicorp/null...
+            - Installing hashicorp/external v2.3.3...
+            - Installed hashicorp/external v2.3.3 (signed by HashiCorp)
+            - Using previously-installed kreuzwerker/docker v3.0.2
+            - Installing hashicorp/null v3.2.2...
+            - Installed hashicorp/null v3.2.2 (signed by HashiCorp)
 
-          Terraform has been successfully initialized!
+            Terraform has made some changes to the provider dependency selections recorded
+            in the .terraform.lock.hcl file. Review those changes and commit them to your
+            version control system if they represent changes you intended to make.
 
-          You may now begin working with Terraform. Try running "terraform plan" to see
-          any changes that are required for your infrastructure. All Terraform commands
-          should now work.
+            Terraform has been successfully initialized!
 
-          If you ever set or change modules or backend configuration for Terraform,
-          rerun this command to reinitialize your working directory. If you forget, other
-          commands will detect it and remind you to do so if necessary.
+            You may now begin working with Terraform. Try running "terraform plan" to see
+            any changes that are required for your infrastructure. All Terraform commands
+            should now work.
 
+            If you ever set or change modules or backend configuration for Terraform,
+            rerun this command to reinitialize your working directory. If you forget, other
+            commands will detect it and remind you to do so if necessary.
 </pre>
 
 &nbsp;
