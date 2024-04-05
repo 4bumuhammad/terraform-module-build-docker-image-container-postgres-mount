@@ -257,7 +257,47 @@ Continue the stage :
     ❯ terraform -chdir=./TF-Module-docker-postgres-container destroy
 
 
+            module.stage2_manage_directory.null_resource.manage_directory: Refreshing state... [id=763768975835620873]
+            module.stage2_manage_directory.data.external.get_home_path: Reading...
+            module.stage1_docker_postgresql.docker_image.postgres: Refreshing state... [id=sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00cpostgres:16.2]
+            module.stage2_manage_directory.data.external.get_home_path: Read complete after 0s [id=-]
 
+            Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+            - destroy
+
+            Terraform will perform the following actions:
+
+            # module.stage1_docker_postgresql.docker_image.postgres will be destroyed
+            - resource "docker_image" "postgres" {
+                - id           = "sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00cpostgres:16.2" -> null
+                - image_id     = "sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00c" -> null
+                - keep_locally = false -> null
+                - name         = "postgres:16.2" -> null
+                - repo_digest  = "postgres@sha256:6b841c8f6a819884207402f1209a8116844365df15fca8cf556fc54a24c70800" -> null
+                }
+
+            # module.stage2_manage_directory.null_resource.manage_directory will be destroyed
+            - resource "null_resource" "manage_directory" {
+                - id       = "763768975835620873" -> null
+                - triggers = {
+                    - "always_run" = "2024-04-05T01:15:22Z"
+                    } -> null
+                }
+
+            Plan: 0 to add, 0 to change, 2 to destroy.
+
+            Do you really want to destroy all resources?
+            Terraform will destroy all your managed infrastructure, as shown above.
+            There is no undo. Only 'yes' will be accepted to confirm.
+
+            Enter a value: yes
+
+            module.stage2_manage_directory.null_resource.manage_directory: Destroying... [id=763768975835620873]
+            module.stage2_manage_directory.null_resource.manage_directory: Destruction complete after 0s
+            module.stage1_docker_postgresql.docker_image.postgres: Destroying... [id=sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00cpostgres:16.2]
+            module.stage1_docker_postgresql.docker_image.postgres: Destruction complete after 1s
+
+            Destroy complete! Resources: 2 destroyed.
 </pre>
 
 &nbsp;
