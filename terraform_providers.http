@@ -1,0 +1,1 @@
+GET https://registry.terraform.io/.well-known/terraform.json HTTP/1.1
