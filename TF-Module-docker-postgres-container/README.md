@@ -142,6 +142,37 @@ Continue the stage :
     ❯ terraform -chdir=./TF-Module-docker-postgres-container plan
 
 
+
+            module.stage2_manage_directory.data.external.get_home_path: Reading...
+            module.stage2_manage_directory.data.external.get_home_path: Read complete after 0s [id=-]
+
+            Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+            + create
+
+            Terraform will perform the following actions:
+
+            # module.stage1_docker_postgresql.docker_image.postgres will be created
+            + resource "docker_image" "postgres" {
+                + id           = (known after apply)
+                + image_id     = (known after apply)
+                + keep_locally = false
+                + name         = "postgres:16.2"
+                + repo_digest  = (known after apply)
+                }
+
+            # module.stage2_manage_directory.null_resource.manage_directory will be created
+            + resource "null_resource" "manage_directory" {
+                + id       = (known after apply)
+                + triggers = {
+                    + "always_run" = (known after apply)
+                    }
+                }
+
+            Plan: 2 to add, 0 to change, 0 to destroy.
+
+            ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+            Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these actions if you run "terraform apply" now.
 </pre>
 
 &nbsp;
