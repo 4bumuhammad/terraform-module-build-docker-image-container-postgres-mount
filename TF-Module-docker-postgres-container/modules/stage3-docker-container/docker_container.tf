@@ -58,3 +58,17 @@ data "local_file" "docker_container_result" {
 output "filtered_docker_container_output" {
   value = data.local_file.docker_container_result.content
 }
+
+resource "null_resource" "delete_file" {
+  triggers = {
+    always_run   = "${timestamp()}"
+    trigger_name = "trigger-delete-file"
+  }
+
+  depends_on = [data.local_file.docker_container_result]
+
+  provisioner "local-exec" {
+    command = "rm -f ${path.module}/docker_container_results.txt"
+    interpreter = ["bash", "-c"]
+  }
+}
