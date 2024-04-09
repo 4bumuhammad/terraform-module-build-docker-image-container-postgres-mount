@@ -18,6 +18,7 @@ resource "docker_image" "postgres" {
 }
 
 resource "null_resource" "docker_images" {
+  depends_on = [docker_image.postgres]
   triggers = {
     always_run   = "${timestamp()}"
     trigger_name = "trigger-docker-images"
@@ -33,7 +34,6 @@ resource "null_resource" "docker_images" {
 
     # command = "docker images --format '{{.Repository}}\t{{.Tag}}\t{{.ID}}\t{{.CreatedAt}}\t{{.Size}}' | grep -E 'postgres|16.2' > ${path.module}/docker_image_results.txt"
   }
-  depends_on = [docker_image.postgres]
 }
 
 data "local_file" "docker_images_result" {
