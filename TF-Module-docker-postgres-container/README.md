@@ -304,6 +304,10 @@ Continue the stage :
 &#x1F534; If you want to display the `trace log`, you can use the following command in the apply stage of this terraform &#x1F3C3;.
 <pre>
     ❯ TF_LOG_CORE=trace terraform -chdir=./TF-Module-docker-postgres-container apply
+
+    # or 
+
+    ❯ TF_LOG_CORE=trace terraform -chdir=./TF-Module-docker-postgres-container apply --auto-approve
 </pre>
 
 ---
