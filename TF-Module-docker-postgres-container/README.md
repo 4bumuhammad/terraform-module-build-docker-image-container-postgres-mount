@@ -18,19 +18,23 @@ Reference :<br />
 
 <pre>
   ❯ tree -L 4 -a -I 'README.md|.DS_Store|.terraform|*.hcl|*.tfstate|*.tfstate.backup' ./TF-Module-docker-postgres-container
-      ├── main.tf
-      ├── modules
-      │   ├── stage1-docker-postgresql
-      │   │   ├── docker_images.tf
-      │   │   ├── outputs.tf
-      │   │   └── variables.tf
-      │   └── stage2-docker-nginx
-      │       ├── docker_images.tf
-      │       ├── outputs.tf
-      │       └── variables.tf
-      └── variables.tf
+  
+        ├── main.tf
+        ├── modules
+        │   ├── stage1-docker-postgresql
+        │   │   ├── docker_images.tf
+        │   │   └── variables.tf
+        │   ├── stage2-manage-directory
+        │   │   ├── get_home.sh
+        │   │   ├── host_directory.tf
+        │   │   ├── outputs.tf
+        │   │   └── variables.tf
+        │   └── stage3-docker-container
+        │       └── variables.tf
+        ├── outputs.tf
+        └── variables.tf
 
-      3 directories, 8 files
+        4 directories, 10 files
 </pre>
 
 &nbsp;
