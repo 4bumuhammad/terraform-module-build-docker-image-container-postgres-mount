@@ -18,7 +18,7 @@ Reference :<br />
 
 <pre>
   ❯ tree -L 4 -a -I 'README.md|.DS_Store|.terraform|*.hcl|*.tfstate|*.tfstate.backup' ./TF-Module-docker-postgres-container
-  
+
         ├── main.tf
         ├── modules
         │   ├── stage1-docker-postgresql
@@ -147,34 +147,60 @@ Continue the stage :
 
 
 
-            module.stage2_manage_directory.data.external.get_home_path: Reading...
-            module.stage2_manage_directory.data.external.get_home_path: Read complete after 0s [id=-]
+            module.stage1_docker_postgresql.docker_image.postgres: Refreshing state... [id=sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00cpostgres:16.2]
+            module.stage1_docker_postgresql.null_resource.docker_images: Refreshing state... [id=6128877807913483506]
+            module.stage1_docker_postgresql.null_resource.delete_file: Refreshing state... [id=2285705307562088553]
 
             Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
-            + create
+            -/+ destroy and then create replacement
+            <= read (data resources)
 
             Terraform will perform the following actions:
 
-            # module.stage1_docker_postgresql.docker_image.postgres will be created
-            + resource "docker_image" "postgres" {
-                + id           = (known after apply)
-                + image_id     = (known after apply)
-                + keep_locally = false
-                + name         = "postgres:16.2"
-                + repo_digest  = (known after apply)
+            # module.stage1_docker_postgresql.data.local_file.docker_images_result will be read during apply
+            # (depends on a resource or a module with changes pending)
+            <= data "local_file" "docker_images_result" {
+                + content              = (known after apply)
+                + content_base64       = (known after apply)
+                + content_base64sha256 = (known after apply)
+                + content_base64sha512 = (known after apply)
+                + content_md5          = (known after apply)
+                + content_sha1         = (known after apply)
+                + content_sha256       = (known after apply)
+                + content_sha512       = (known after apply)
+                + filename             = "modules/stage1-docker-postgresql/docker_image_results.txt"
+                + id                   = (known after apply)
                 }
 
-            # module.stage2_manage_directory.null_resource.manage_directory will be created
-            + resource "null_resource" "manage_directory" {
-                + id       = (known after apply)
-                + triggers = {
-                    + "always_run" = (known after apply)
+            # module.stage1_docker_postgresql.null_resource.delete_file must be replaced
+            -/+ resource "null_resource" "delete_file" {
+                ~ id       = "2285705307562088553" -> (known after apply)
+                ~ triggers = { # forces replacement
+                    ~ "always_run"   = "2024-04-09T05:46:37Z" -> (known after apply)
+                        # (1 unchanged element hidden)
                     }
                 }
 
-            Plan: 2 to add, 0 to change, 0 to destroy.
+            # module.stage1_docker_postgresql.null_resource.docker_images must be replaced
+            -/+ resource "null_resource" "docker_images" {
+                ~ id       = "6128877807913483506" -> (known after apply)
+                ~ triggers = { # forces replacement
+                    ~ "always_run"   = "2024-04-09T05:46:37Z" -> (known after apply)
+                        # (1 unchanged element hidden)
+                    }
+                }
 
-            ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+            Plan: 2 to add, 0 to change, 2 to destroy.
+
+            Changes to Outputs:
+            ~ stage1_docker_postgresql_filtered_docker_images_output = <<-EOT
+                    REPORTS
+                    Trigger Name: trigger-docker-images
+                    Result docker image filter :  postgres        16.2    eae233f106f6    2024-02-21 07:46:13 +0700 WIB   453MB
+                    Timestamp: Tue Apr  9 12:46:37 WIB 2024
+                EOT -> (known after apply)
+
+            ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
             Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these actions if you run "terraform apply" now.
 </pre>
@@ -185,43 +211,86 @@ Continue the stage :
     ❯ terraform -chdir=./TF-Module-docker-postgres-container apply -auto-approve
 
 
-            module.stage2_manage_directory.data.external.get_home_path: Reading...
-            module.stage2_manage_directory.data.external.get_home_path: Read complete after 0s [id=-]
+
+
+            module.stage1_docker_postgresql.docker_image.postgres: Refreshing state... [id=sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00cpostgres:16.2]
+            module.stage1_docker_postgresql.null_resource.docker_images: Refreshing state... [id=6128877807913483506]
+            module.stage1_docker_postgresql.null_resource.delete_file: Refreshing state... [id=2285705307562088553]
 
             Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
-            + create
+            -/+ destroy and then create replacement
+            <= read (data resources)
 
             Terraform will perform the following actions:
 
-            # module.stage1_docker_postgresql.docker_image.postgres will be created
-            + resource "docker_image" "postgres" {
-                + id           = (known after apply)
-                + image_id     = (known after apply)
-                + keep_locally = false
-                + name         = "postgres:16.2"
-                + repo_digest  = (known after apply)
+            # module.stage1_docker_postgresql.data.local_file.docker_images_result will be read during apply
+            # (depends on a resource or a module with changes pending)
+            <= data "local_file" "docker_images_result" {
+                + content              = (known after apply)
+                + content_base64       = (known after apply)
+                + content_base64sha256 = (known after apply)
+                + content_base64sha512 = (known after apply)
+                + content_md5          = (known after apply)
+                + content_sha1         = (known after apply)
+                + content_sha256       = (known after apply)
+                + content_sha512       = (known after apply)
+                + filename             = "modules/stage1-docker-postgresql/docker_image_results.txt"
+                + id                   = (known after apply)
                 }
 
-            # module.stage2_manage_directory.null_resource.manage_directory will be created
-            + resource "null_resource" "manage_directory" {
-                + id       = (known after apply)
-                + triggers = {
-                    + "always_run" = (known after apply)
+            # module.stage1_docker_postgresql.null_resource.delete_file must be replaced
+            -/+ resource "null_resource" "delete_file" {
+                ~ id       = "2285705307562088553" -> (known after apply)
+                ~ triggers = { # forces replacement
+                    ~ "always_run"   = "2024-04-09T05:46:37Z" -> (known after apply)
+                        # (1 unchanged element hidden)
                     }
                 }
 
-            Plan: 2 to add, 0 to change, 0 to destroy.
-            module.stage2_manage_directory.null_resource.manage_directory: Creating...
-            module.stage2_manage_directory.null_resource.manage_directory: Creation complete after 0s [id=763768975835620873]
-            module.stage1_docker_postgresql.docker_image.postgres: Creating...
-            module.stage1_docker_postgresql.docker_image.postgres: Still creating... [10s elapsed]
-            module.stage1_docker_postgresql.docker_image.postgres: Still creating... [20s elapsed]
-            module.stage1_docker_postgresql.docker_image.postgres: Still creating... [30s elapsed]
-            module.stage1_docker_postgresql.docker_image.postgres: Still creating... [40s elapsed]
-            module.stage1_docker_postgresql.docker_image.postgres: Still creating... [50s elapsed]
-            module.stage1_docker_postgresql.docker_image.postgres: Creation complete after 1m0s [id=sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00cpostgres:16.2]
+            # module.stage1_docker_postgresql.null_resource.docker_images must be replaced
+            -/+ resource "null_resource" "docker_images" {
+                ~ id       = "6128877807913483506" -> (known after apply)
+                ~ triggers = { # forces replacement
+                    ~ "always_run"   = "2024-04-09T05:46:37Z" -> (known after apply)
+                        # (1 unchanged element hidden)
+                    }
+                }
 
-            Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+            Plan: 2 to add, 0 to change, 2 to destroy.
+
+            Changes to Outputs:
+            ~ stage1_docker_postgresql_filtered_docker_images_output = <<-EOT
+                    REPORTS
+                    Trigger Name: trigger-docker-images
+                    Result docker image filter :  postgres        16.2    eae233f106f6    2024-02-21 07:46:13 +0700 WIB   453MB
+                    Timestamp: Tue Apr  9 12:46:37 WIB 2024
+                EOT -> (known after apply)
+            module.stage1_docker_postgresql.null_resource.delete_file: Destroying... [id=2285705307562088553]
+            module.stage1_docker_postgresql.null_resource.delete_file: Destruction complete after 0s
+            module.stage1_docker_postgresql.null_resource.docker_images: Destroying... [id=6128877807913483506]
+            module.stage1_docker_postgresql.null_resource.docker_images: Destruction complete after 0s
+            module.stage1_docker_postgresql.null_resource.docker_images: Creating...
+            module.stage1_docker_postgresql.null_resource.docker_images: Provisioning with 'local-exec'...
+            module.stage1_docker_postgresql.null_resource.docker_images (local-exec): Executing: ["/bin/sh" "-c" "      echo \"REPORTS\" > modules/stage1-docker-postgresql/docker_image_results.txt\n      echo \"  Trigger Name: trigger-docker-images\" >> modules/stage1-docker-postgresql/docker_image_results.txt\n      echo \"  Result docker image filter : \"| tr '\\n' ' ' >> modules/stage1-docker-postgresql/docker_image_results.txt && docker images --format '{{.Repository}}\\t{{.Tag}}\\t{{.ID}}\\t{{.CreatedAt}}\\t{{.Size}}' | grep -E 'postgres|16.2' >> modules/stage1-docker-postgresql/docker_image_results.txt\n      echo \"  Timestamp: $(date)\" >> modules/stage1-docker-postgresql/docker_image_results.txt\n"]
+            module.stage1_docker_postgresql.null_resource.docker_images: Creation complete after 0s [id=4366815642111786613]
+            module.stage1_docker_postgresql.data.local_file.docker_images_result: Reading...
+            module.stage1_docker_postgresql.data.local_file.docker_images_result: Read complete after 0s [id=1c207ed4c83e0db2f4589ea06c9410419125ea6c]
+            module.stage1_docker_postgresql.null_resource.delete_file: Creating...
+            module.stage1_docker_postgresql.null_resource.delete_file: Provisioning with 'local-exec'...
+            module.stage1_docker_postgresql.null_resource.delete_file (local-exec): Executing: ["bash" "-c" "rm -f modules/stage1-docker-postgresql/docker_image_results.txt"]
+            module.stage1_docker_postgresql.null_resource.delete_file: Creation complete after 0s [id=6008719730971336629]
+
+            Apply complete! Resources: 2 added, 0 changed, 2 destroyed.
+
+            Outputs:
+
+            stage1_docker_postgresql_filtered_docker_images_output = <<EOT
+            REPORTS
+            Trigger Name: trigger-docker-images
+            Result docker image filter :  postgres        16.2    eae233f106f6    2024-02-21 07:46:13 +0700 WIB   453MB
+            Timestamp: Tue Apr  9 12:53:45 WIB 2024
+
+            EOT
 </pre>
 
 &nbsp;
