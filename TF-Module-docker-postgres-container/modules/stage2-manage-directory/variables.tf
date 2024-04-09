@@ -10,5 +10,3 @@ variable "datatest_directory" {
 locals {
   full_datatest_directory = "${data.external.get_home_path.result["path"]}${var.datatest_directory}"
 }
-
-# SOLVED https://stackoverflow.com/questions/52503528/why-is-my-terraform-output-not-working-in-module

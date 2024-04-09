@@ -29,11 +29,30 @@ resource "null_resource" "manage_directory" {
 
 }
 
+output "full_datatest_directory_output" {
+  value = local.full_datatest_directory
+}
+
+
 data "local_file" "manage_directory_result" {
   depends_on = [null_resource.manage_directory]
   filename   = "${path.module}/manage_directory_results.txt"
 }
 
-output "full_datatest_directory_output" {
+output "manage_directory_output" {
   value = data.local_file.manage_directory_result.content
+}
+
+resource "null_resource" "delete_file" {
+  triggers = {
+    always_run   = "${timestamp()}"
+    trigger_name = "trigger-delete-file"
+  }
+
+  depends_on = [data.local_file.manage_directory_result]
+
+  provisioner "local-exec" {
+    command = "rm -f ${path.module}/manage_directory_results.txt"
+    interpreter = ["bash", "-c"]
+  }
 }

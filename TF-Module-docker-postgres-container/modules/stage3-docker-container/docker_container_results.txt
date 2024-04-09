@@ -1,0 +1,4 @@
+REPORTS
+  Trigger Name: trigger-docker-container
+  Data directory: /Users/powercommerce/Documents/test/docker-mount/postgres-test/
+  Timestamp: Tue Apr  9 17:30:37 WIB 2024

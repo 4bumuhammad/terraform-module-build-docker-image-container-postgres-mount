@@ -1,6 +1,0 @@
-REPORTS
-  Trigger Name: trigger-manage-directory
-  Directory info: A new directory is created to create the specified directory or replace the previous one.
-  Path Directory: /Users/powercommerce/Documents/test/docker-mount/postgres-test/
-  Size Directory:  0B
-  Timestamp: Tue Apr  9 15:03:06 WIB 2024

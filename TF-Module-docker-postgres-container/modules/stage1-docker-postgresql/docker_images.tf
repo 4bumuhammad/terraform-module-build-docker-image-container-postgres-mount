@@ -13,7 +13,7 @@ provider "docker" {
 }
 
 resource "docker_image" "postgres" {
-  name         = "postgres:16.2"
+  name         = "${var.docker_image_name_transition}:${var.docker_image_tag_transition}"
   keep_locally = false
 }
 
@@ -31,8 +31,6 @@ resource "null_resource" "docker_images" {
       echo "  Result docker image filter : "| tr '\n' ' ' >> ${path.module}/docker_image_results.txt && docker images --format '{{.Repository}}\t{{.Tag}}\t{{.ID}}\t{{.CreatedAt}}\t{{.Size}}' | grep -E 'postgres|16.2' >> ${path.module}/docker_image_results.txt
       echo "  Timestamp: $(date)" >> ${path.module}/docker_image_results.txt
     EOT
-
-    # command = "docker images --format '{{.Repository}}\t{{.Tag}}\t{{.ID}}\t{{.CreatedAt}}\t{{.Size}}' | grep -E 'postgres|16.2' > ${path.module}/docker_image_results.txt"
   }
 }
 
