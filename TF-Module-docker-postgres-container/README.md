@@ -331,50 +331,63 @@ Continue the stage :
 &nbsp;
 
 <pre>
-    ❯ terraform -chdir=./TF-Module-docker-postgres-container destroy
+    ❯ terraform -chdir=./TF-Module-docker-postgres-container destroy -auto-approve
 
 
-            module.stage2_manage_directory.null_resource.manage_directory: Refreshing state... [id=763768975835620873]
-            module.stage2_manage_directory.data.external.get_home_path: Reading...
-            module.stage1_docker_postgresql.docker_image.postgres: Refreshing state... [id=sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00cpostgres:16.2]
-            module.stage2_manage_directory.data.external.get_home_path: Read complete after 0s [id=-]
 
-            Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
-            - destroy
+                module.stage1_docker_postgresql.docker_image.postgres: Refreshing state... [id=sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00cpostgres:16.2]
+                module.stage1_docker_postgresql.null_resource.docker_images: Refreshing state... [id=6191360922817417433]
+                module.stage1_docker_postgresql.null_resource.delete_file: Refreshing state... [id=5022762089558680346]
 
-            Terraform will perform the following actions:
+                Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+                - destroy
 
-            # module.stage1_docker_postgresql.docker_image.postgres will be destroyed
-            - resource "docker_image" "postgres" {
-                - id           = "sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00cpostgres:16.2" -> null
-                - image_id     = "sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00c" -> null
-                - keep_locally = false -> null
-                - name         = "postgres:16.2" -> null
-                - repo_digest  = "postgres@sha256:6b841c8f6a819884207402f1209a8116844365df15fca8cf556fc54a24c70800" -> null
-                }
+                Terraform will perform the following actions:
 
-            # module.stage2_manage_directory.null_resource.manage_directory will be destroyed
-            - resource "null_resource" "manage_directory" {
-                - id       = "763768975835620873" -> null
-                - triggers = {
-                    - "always_run" = "2024-04-05T01:15:22Z"
-                    } -> null
-                }
+                # module.stage1_docker_postgresql.docker_image.postgres will be destroyed
+                - resource "docker_image" "postgres" {
+                    - id           = "sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00cpostgres:16.2" -> null
+                    - image_id     = "sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00c" -> null
+                    - keep_locally = false -> null
+                    - name         = "postgres:16.2" -> null
+                    - repo_digest  = "postgres@sha256:6b841c8f6a819884207402f1209a8116844365df15fca8cf556fc54a24c70800" -> null
+                    }
 
-            Plan: 0 to add, 0 to change, 2 to destroy.
+                # module.stage1_docker_postgresql.null_resource.delete_file will be destroyed
+                - resource "null_resource" "delete_file" {
+                    - id       = "5022762089558680346" -> null
+                    - triggers = {
+                        - "always_run"   = "2024-04-09T05:56:10Z"
+                        - "trigger_name" = "trigger-delete-file"
+                        } -> null
+                    }
 
-            Do you really want to destroy all resources?
-            Terraform will destroy all your managed infrastructure, as shown above.
-            There is no undo. Only 'yes' will be accepted to confirm.
+                # module.stage1_docker_postgresql.null_resource.docker_images will be destroyed
+                - resource "null_resource" "docker_images" {
+                    - id       = "6191360922817417433" -> null
+                    - triggers = {
+                        - "always_run"   = "2024-04-09T05:56:10Z"
+                        - "trigger_name" = "trigger-docker-images"
+                        } -> null
+                    }
 
-            Enter a value: yes
+                Plan: 0 to add, 0 to change, 3 to destroy.
 
-            module.stage2_manage_directory.null_resource.manage_directory: Destroying... [id=763768975835620873]
-            module.stage2_manage_directory.null_resource.manage_directory: Destruction complete after 0s
-            module.stage1_docker_postgresql.docker_image.postgres: Destroying... [id=sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00cpostgres:16.2]
-            module.stage1_docker_postgresql.docker_image.postgres: Destruction complete after 1s
+                Changes to Outputs:
+                - stage1_docker_postgresql_filtered_docker_images_output = <<-EOT
+                        REPORTS
+                        Trigger Name: trigger-docker-images
+                        Result docker image filter :  postgres        16.2    eae233f106f6    2024-02-21 07:46:13 +0700 WIB   453MB
+                        Timestamp: Tue Apr  9 12:56:10 WIB 2024
+                    EOT -> null
+                module.stage1_docker_postgresql.null_resource.delete_file: Destroying... [id=5022762089558680346]
+                module.stage1_docker_postgresql.null_resource.delete_file: Destruction complete after 0s
+                module.stage1_docker_postgresql.null_resource.docker_images: Destroying... [id=6191360922817417433]
+                module.stage1_docker_postgresql.null_resource.docker_images: Destruction complete after 0s
+                module.stage1_docker_postgresql.docker_image.postgres: Destroying... [id=sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00cpostgres:16.2]
+                module.stage1_docker_postgresql.docker_image.postgres: Destruction complete after 0s
 
-            Destroy complete! Resources: 2 destroyed.
+                Destroy complete! Resources: 3 destroyed.
 </pre>
 
 &nbsp;
