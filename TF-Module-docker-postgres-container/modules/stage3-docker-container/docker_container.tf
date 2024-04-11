@@ -23,7 +23,7 @@ resource "docker_container" "postgres" {
   env = [
     "POSTGRES_USER=postgres",
     # "POSTGRES_PASSWORD=password12345",
-    "POSTGRES_PASSWORD=${var.postgres_password}",
+    "POSTGRES_PASSWORD=${var.postgres_password_transition}",
   ]
   volumes {
     host_path      = var.datatest_directory

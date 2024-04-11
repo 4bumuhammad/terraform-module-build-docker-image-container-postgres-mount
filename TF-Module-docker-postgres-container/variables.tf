@@ -10,3 +10,9 @@ variable "docker_image_name" {
 variable "docker_image_tag" {
   default = "16.2"
 }
+
+variable "postgres_password" {
+  type        = string
+  description = "Password for PostgreSQL database"
+  sensitive   = true
+}

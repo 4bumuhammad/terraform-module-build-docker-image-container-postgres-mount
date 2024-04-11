@@ -10,8 +10,7 @@ variable "datatest_directory" {
   type        = string
 }
 
-variable "postgres_password" {
-  type        = string
-  description = "Password for PostgreSQL database"
-  sensitive   = true
+variable "postgres_password_transition" {
+  description = "secret password"
+  type = string
 }
