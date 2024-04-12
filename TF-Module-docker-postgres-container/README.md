@@ -27,14 +27,15 @@ Reference :<br />
         │   ├── stage2-manage-directory
         │   │   ├── get_home.sh
         │   │   ├── host_directory.tf
-        │   │   ├── outputs.tf
         │   │   └── variables.tf
         │   └── stage3-docker-container
+        │       ├── docker_container.tf
         │       └── variables.tf
         ├── outputs.tf
+        ├── secret.tfvars
         └── variables.tf
 
-        4 directories, 10 files
+        4 directories, 11 files
 </pre>
 
 &nbsp;
