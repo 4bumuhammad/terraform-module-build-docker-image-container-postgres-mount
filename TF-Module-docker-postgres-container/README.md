@@ -690,13 +690,17 @@ Continue the stage :
 &nbsp;
 
 <pre>
-    ❯ terraform -chdir=./TF-Module-docker-postgres-container destroy -auto-approve
+    ❯ terraform -chdir=./TF-Module-docker-postgres-container destroy -auto-approve  -var-file=./secret.tfvars
 
 
-
-                module.stage1_docker_postgresql.docker_image.postgres: Refreshing state... [id=sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00cpostgres:16.2]
-                module.stage1_docker_postgresql.null_resource.docker_images: Refreshing state... [id=6191360922817417433]
-                module.stage1_docker_postgresql.null_resource.delete_file: Refreshing state... [id=5022762089558680346]
+                module.stage1_docker_postgresql.docker_image.postgres: Refreshing state... [id=sha256:d4ffc32b30ba1f80294a3aa127db06a7b3bbbd6024e338fc572bcaa94e8e5845postgres:16.2]
+                module.stage1_docker_postgresql.null_resource.docker_images: Refreshing state... [id=4272794329741421283]
+                module.stage1_docker_postgresql.null_resource.delete_file: Refreshing state... [id=1709162432822607664]
+                module.stage2_manage_directory.null_resource.manage_directory: Refreshing state... [id=6494376074876062410]
+                module.stage2_manage_directory.null_resource.delete_file: Refreshing state... [id=1824161325513092477]
+                module.stage3_docker_container.docker_container.postgres: Refreshing state... [id=f26cc78a59b30b56d8983a3c6ae8d25411f54305bb97e081bd3ba8c2d6752f5e]
+                module.stage3_docker_container.null_resource.docker_container: Refreshing state... [id=1322279308833061087]
+                module.stage3_docker_container.null_resource.delete_file: Refreshing state... [id=3303924249606419232]
 
                 Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
                 - destroy
@@ -705,48 +709,184 @@ Continue the stage :
 
                 # module.stage1_docker_postgresql.docker_image.postgres will be destroyed
                 - resource "docker_image" "postgres" {
-                    - id           = "sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00cpostgres:16.2" -> null
-                    - image_id     = "sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00c" -> null
+                    - id           = "sha256:d4ffc32b30ba1f80294a3aa127db06a7b3bbbd6024e338fc572bcaa94e8e5845postgres:16.2" -> null
+                    - image_id     = "sha256:d4ffc32b30ba1f80294a3aa127db06a7b3bbbd6024e338fc572bcaa94e8e5845" -> null
                     - keep_locally = false -> null
                     - name         = "postgres:16.2" -> null
-                    - repo_digest  = "postgres@sha256:6b841c8f6a819884207402f1209a8116844365df15fca8cf556fc54a24c70800" -> null
+                    - repo_digest  = "postgres@sha256:37a21462f4b4efb16c41b53af4fd31898fa322332a044d730e65bcc0a1ae6a5f" -> null
                     }
 
                 # module.stage1_docker_postgresql.null_resource.delete_file will be destroyed
                 - resource "null_resource" "delete_file" {
-                    - id       = "5022762089558680346" -> null
+                    - id       = "1709162432822607664" -> null
                     - triggers = {
-                        - "always_run"   = "2024-04-09T05:56:10Z"
+                        - "always_run"   = "2024-04-11T23:49:17Z"
                         - "trigger_name" = "trigger-delete-file"
                         } -> null
                     }
 
                 # module.stage1_docker_postgresql.null_resource.docker_images will be destroyed
                 - resource "null_resource" "docker_images" {
-                    - id       = "6191360922817417433" -> null
+                    - id       = "4272794329741421283" -> null
                     - triggers = {
-                        - "always_run"   = "2024-04-09T05:56:10Z"
+                        - "always_run"   = "2024-04-11T23:49:17Z"
                         - "trigger_name" = "trigger-docker-images"
                         } -> null
                     }
 
-                Plan: 0 to add, 0 to change, 3 to destroy.
+                # module.stage2_manage_directory.null_resource.delete_file will be destroyed
+                - resource "null_resource" "delete_file" {
+                    - id       = "1824161325513092477" -> null
+                    - triggers = {
+                        - "always_run"   = "2024-04-11T23:49:17Z"
+                        - "trigger_name" = "trigger-delete-file"
+                        } -> null
+                    }
+
+                # module.stage2_manage_directory.null_resource.manage_directory will be destroyed
+                - resource "null_resource" "manage_directory" {
+                    - id       = "6494376074876062410" -> null
+                    - triggers = {
+                        - "always_run"   = "2024-04-11T23:49:17Z"
+                        - "trigger_name" = "trigger-manage-directory"
+                        } -> null
+                    }
+
+                # module.stage3_docker_container.docker_container.postgres will be destroyed
+                - resource "docker_container" "postgres" {
+                    - attach                                      = false -> null
+                    - command                                     = [
+                        - "postgres",
+                        ] -> null
+                    - container_read_refresh_timeout_milliseconds = 15000 -> null
+                    - cpu_shares                                  = 0 -> null
+                    - dns                                         = [] -> null
+                    - dns_opts                                    = [] -> null
+                    - dns_search                                  = [] -> null
+                    - entrypoint                                  = [
+                        - "docker-entrypoint.sh",
+                        ] -> null
+                    - env                                         = (sensitive value) -> null
+                    - group_add                                   = [] -> null
+                    - hostname                                    = "f26cc78a59b3" -> null
+                    - id                                          = "f26cc78a59b30b56d8983a3c6ae8d25411f54305bb97e081bd3ba8c2d6752f5e" -> null
+                    - image                                       = "sha256:d4ffc32b30ba1f80294a3aa127db06a7b3bbbd6024e338fc572bcaa94e8e5845" -> null
+                    - init                                        = false -> null
+                    - ipc_mode                                    = "private" -> null
+                    - log_driver                                  = "json-file" -> null
+                    - log_opts                                    = {} -> null
+                    - logs                                        = false -> null
+                    - max_retry_count                             = 0 -> null
+                    - memory                                      = 512 -> null
+                    - memory_swap                                 = 1024 -> null
+                    - must_run                                    = true -> null
+                    - name                                        = "Terraform-postgres" -> null
+                    - network_data                                = [
+                        - {
+                            - gateway                   = "172.17.0.1"
+                            - global_ipv6_address       = ""
+                            - global_ipv6_prefix_length = 0
+                            - ip_address                = "172.17.0.2"
+                            - ip_prefix_length          = 16
+                            - ipv6_gateway              = ""
+                            - mac_address               = "02:42:ac:11:00:02"
+                            - network_name              = "bridge"
+                            },
+                        ] -> null
+                    - network_mode                                = "default" -> null
+                    - privileged                                  = false -> null
+                    - publish_all_ports                           = false -> null
+                    - read_only                                   = false -> null
+                    - remove_volumes                              = true -> null
+                    - restart                                     = "no" -> null
+                    - rm                                          = false -> null
+                    - runtime                                     = "runc" -> null
+                    - security_opts                               = [] -> null
+                    - shm_size                                    = 64 -> null
+                    - start                                       = true -> null
+                    - stdin_open                                  = false -> null
+                    - stop_signal                                 = "SIGINT" -> null
+                    - stop_timeout                                = 0 -> null
+                    - storage_opts                                = {} -> null
+                    - sysctls                                     = {} -> null
+                    - tmpfs                                       = {} -> null
+                    - tty                                         = false -> null
+                    - wait                                        = false -> null
+                    - wait_timeout                                = 60 -> null
+
+                    - ports {
+                        - external = 5432 -> null
+                        - internal = 5432 -> null
+                        - ip       = "0.0.0.0" -> null
+                        - protocol = "tcp" -> null
+                        }
+
+                    - volumes {
+                        - container_path = "/var/lib/postgresql/data" -> null
+                        - host_path      = "/Users/powercommerce/Documents/test/docker-mount/postgres-test/" -> null
+                        - read_only      = false -> null
+                        }
+                    }
+
+                # module.stage3_docker_container.null_resource.delete_file will be destroyed
+                - resource "null_resource" "delete_file" {
+                    - id       = "3303924249606419232" -> null
+                    - triggers = {
+                        - "always_run"   = "2024-04-11T23:49:17Z"
+                        - "trigger_name" = "trigger-delete-file"
+                        } -> null
+                    }
+
+                # module.stage3_docker_container.null_resource.docker_container will be destroyed
+                - resource "null_resource" "docker_container" {
+                    - id       = "1322279308833061087" -> null
+                    - triggers = {
+                        - "always_run"   = "2024-04-11T23:49:17Z"
+                        - "trigger_name" = "trigger-docker-container"
+                        } -> null
+                    }
+
+                Plan: 0 to add, 0 to change, 8 to destroy.
 
                 Changes to Outputs:
-                - stage1_docker_postgresql_filtered_docker_images_output = &lt;&lt;-EOT
+                - stage1_docker_postgresql_filtered_docker_images_output   = <<-EOT
                         REPORTS
                         Trigger Name: trigger-docker-images
-                        Result docker image filter :  postgres        16.2    eae233f106f6    2024-02-21 07:46:13 +0700 WIB   453MB
-                        Timestamp: Tue Apr  9 12:56:10 WIB 2024
+                        Result docker image filter :  postgres        16.2    d4ffc32b30ba    2024-02-21 07:46:13 +0700 WIB   453MB
+                        Timestamp: Fri Apr 12 06:49:17 WIB 2024
                     EOT -> null
-                module.stage1_docker_postgresql.null_resource.delete_file: Destroying... [id=5022762089558680346]
+                - stage2_manage_directory_full_datatest_directory_output   = <<-EOT
+                        REPORTS
+                        Trigger Name: trigger-manage-directory
+                        Directory info: The directory contains at least one folder starting with 'pg_' so no treatment of the directory is required.
+                        Path Directory: /Users/powercommerce/Documents/test/docker-mount/postgres-test/
+                        Size Directory:  38M
+                        Timestamp: Fri Apr 12 06:49:17 WIB 2024
+                    EOT -> null
+                - stage3_docker_container_filtered_docker_container_output = <<-EOT
+                        REPORTS
+                        Trigger Name: trigger-docker-container
+                        Data directory: /Users/powercommerce/Documents/test/docker-mount/postgres-test/
+                        Timestamp: Fri Apr 12 06:49:17 WIB 2024
+                    EOT -> null
+                module.stage3_docker_container.null_resource.delete_file: Destroying... [id=3303924249606419232]
+                module.stage3_docker_container.null_resource.delete_file: Destruction complete after 0s
+                module.stage3_docker_container.null_resource.docker_container: Destroying... [id=1322279308833061087]
+                module.stage3_docker_container.null_resource.docker_container: Destruction complete after 0s
+                module.stage3_docker_container.docker_container.postgres: Destroying... [id=f26cc78a59b30b56d8983a3c6ae8d25411f54305bb97e081bd3ba8c2d6752f5e]
+                module.stage3_docker_container.docker_container.postgres: Destruction complete after 0s
+                module.stage2_manage_directory.null_resource.delete_file: Destroying... [id=1824161325513092477]
+                module.stage2_manage_directory.null_resource.delete_file: Destruction complete after 0s
+                module.stage2_manage_directory.null_resource.manage_directory: Destroying... [id=6494376074876062410]
+                module.stage2_manage_directory.null_resource.manage_directory: Destruction complete after 0s
+                module.stage1_docker_postgresql.null_resource.delete_file: Destroying... [id=1709162432822607664]
                 module.stage1_docker_postgresql.null_resource.delete_file: Destruction complete after 0s
-                module.stage1_docker_postgresql.null_resource.docker_images: Destroying... [id=6191360922817417433]
+                module.stage1_docker_postgresql.null_resource.docker_images: Destroying... [id=4272794329741421283]
                 module.stage1_docker_postgresql.null_resource.docker_images: Destruction complete after 0s
-                module.stage1_docker_postgresql.docker_image.postgres: Destroying... [id=sha256:eae233f106f633adc0f551b7bfb6766149fddec54458520cafa6ac849ae1b00cpostgres:16.2]
+                module.stage1_docker_postgresql.docker_image.postgres: Destroying... [id=sha256:d4ffc32b30ba1f80294a3aa127db06a7b3bbbd6024e338fc572bcaa94e8e5845postgres:16.2]
                 module.stage1_docker_postgresql.docker_image.postgres: Destruction complete after 0s
 
-                Destroy complete! Resources: 3 destroyed.
+                Destroy complete! Resources: 8 destroyed.
 </pre>
 
 &nbsp;
