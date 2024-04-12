@@ -12,5 +12,5 @@ variable "datatest_directory" {
 
 variable "postgres_password_transition" {
   description = "secret password"
-  type = string
+  type        = string
 }

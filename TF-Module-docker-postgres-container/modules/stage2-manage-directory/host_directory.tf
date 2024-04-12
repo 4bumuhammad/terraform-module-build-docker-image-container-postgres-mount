@@ -8,7 +8,7 @@ terraform {
 
 resource "null_resource" "manage_directory" {
   triggers = {
-    always_run = "${timestamp()}"
+    always_run   = "${timestamp()}"
     trigger_name = "trigger-manage-directory"
   }
   provisioner "local-exec" {
@@ -25,7 +25,7 @@ resource "null_resource" "manage_directory" {
       echo "  Size Directory: "| tr '\n' ' ' >> ${path.module}/manage_directory_results.txt && du -sh ${local.full_datatest_directory} | cut -f1 | awk '{$1=$1};1' >> ${path.module}/manage_directory_results.txt
       echo "  Timestamp: $(date)" >> ${path.module}/manage_directory_results.txt
     EOT
-  }  
+  }
 
 }
 
@@ -52,7 +52,7 @@ resource "null_resource" "delete_file" {
   depends_on = [data.local_file.manage_directory_result]
 
   provisioner "local-exec" {
-    command = "rm -f ${path.module}/manage_directory_results.txt"
+    command     = "rm -f ${path.module}/manage_directory_results.txt"
     interpreter = ["bash", "-c"]
   }
 }

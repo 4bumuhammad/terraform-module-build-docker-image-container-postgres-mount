@@ -68,7 +68,7 @@ resource "null_resource" "delete_file" {
   depends_on = [data.local_file.docker_container_result]
 
   provisioner "local-exec" {
-    command = "rm -f ${path.module}/docker_container_results.txt"
+    command     = "rm -f ${path.module}/docker_container_results.txt"
     interpreter = ["bash", "-c"]
   }
 }
