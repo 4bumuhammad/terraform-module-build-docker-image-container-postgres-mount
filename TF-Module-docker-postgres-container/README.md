@@ -103,28 +103,44 @@ Continue the stage :
 
 
 
-            Initializing the backend...
-            Initializing modules...
+                Initializing the backend...
+                Initializing modules...
+                - stage1_docker_postgresql in modules/stage1-docker-postgresql
+                - stage2_manage_directory in modules/stage2-manage-directory
+                - stage3_docker_container in modules/stage3-docker-container
 
-            Initializing provider plugins...
-            - Reusing previous version of kreuzwerker/docker from the dependency lock file
-            - Reusing previous version of hashicorp/null from the dependency lock file
-            - Reusing previous version of hashicorp/local from the dependency lock file
-            - Reusing previous version of hashicorp/external from the dependency lock file
-            - Using previously-installed hashicorp/local v2.5.1
-            - Using previously-installed hashicorp/external v2.3.3
-            - Using previously-installed kreuzwerker/docker v3.0.2
-            - Using previously-installed hashicorp/null v3.2.2
+                Initializing provider plugins...
+                - Finding latest version of hashicorp/null...
+                - Finding latest version of hashicorp/local...
+                - Finding latest version of hashicorp/external...
+                - Finding kreuzwerker/docker versions matching "3.0.2"...
+                - Installing hashicorp/local v2.5.1...
+                - Installed hashicorp/local v2.5.1 (signed by HashiCorp)
+                - Installing hashicorp/external v2.3.3...
+                - Installed hashicorp/external v2.3.3 (signed by HashiCorp)
+                - Installing kreuzwerker/docker v3.0.2...
+                - Installed kreuzwerker/docker v3.0.2 (self-signed, key ID BD080C4571C6104C)
+                - Installing hashicorp/null v3.2.2...
+                - Installed hashicorp/null v3.2.2 (signed by HashiCorp)
 
-            Terraform has been successfully initialized!
+                Partner and community providers are signed by their developers.
+                If you'd like to know more about provider signing, you can read about it here:
+                https://www.terraform.io/docs/cli/plugins/signing.html
 
-            You may now begin working with Terraform. Try running "terraform plan" to see
-            any changes that are required for your infrastructure. All Terraform commands
-            should now work.
+                Terraform has created a lock file .terraform.lock.hcl to record the provider
+                selections it made above. Include this file in your version control repository
+                so that Terraform can guarantee to make the same selections by default when
+                you run "terraform init" in the future.
 
-            If you ever set or change modules or backend configuration for Terraform,
-            rerun this command to reinitialize your working directory. If you forget, other
-            commands will detect it and remind you to do so if necessary.
+                Terraform has been successfully initialized!
+
+                You may now begin working with Terraform. Try running "terraform plan" to see
+                any changes that are required for your infrastructure. All Terraform commands
+                should now work.
+
+                If you ever set or change modules or backend configuration for Terraform,
+                rerun this command to reinitialize your working directory. If you forget, other
+                commands will detect it and remind you to do so if necessary.
 </pre>
 
 &nbsp;
